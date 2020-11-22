@@ -1,0 +1,25 @@
+import tensorflow.compat.v1 as tf
+tf.disable_v2_behavior()
+=> NewNet
+=> utils\geo_layer_utils
+=> utils\loss_utils
+
+Should modified
+=> model_origin_bicubic
+=> vgg16_update
+
+* import tf_slim as slim
+* app => compat.v1
+* tf.ConfigProto => tf.compat.v1.ConfigProto()
+* FLAGS = tf.app.flags.FLAGS() => FLAGS = tf.compat.v1.flags.FLAGS
+* tf.contrib.data.shuffle_and_repeat => tf.data.experimental.shuffle_and_repeat
+* tf.read_file => tf.io.read_file
+* tf.random_crop => tf.image.random_crop
+* dataset_frame1.batch(FLAGS.batch_size).make_initializable_iterator() => tf.compat.v1.data.make_one_shot_iterator(dataset_frame1.batch(FLAGS.batch_size))
+* self.data_dict = np.load(weights_file, encoding='latin1').item() => self.data_dict = np.load(weights_file, encoding='latin1', allow_pickle=True).item()
+* tf.variable_scope => tf.compat.v1.variable_scope
+* tf.variable_scope() => tf.compat.v1.variable_scope()
+* tf.get_variable_scope().reuse_variables() => tf.compat.v1.get_variable_scope().reuse_variables()
+* tf.get_variable => tf.compat.v1.get_variable
+* tf.truncated_normal_initializer => tf.compat.v1.truncated_normal_initializer
+* tf.image.resize_bicubic => tf.compat.v1.image.resize_bicubic
