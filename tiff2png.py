@@ -4,6 +4,7 @@ from os.path import isdir, join
 import glob
 from PIL import Image
 import sys
+import cv2
 
 target_dir = sys.argv[1]
 split_token = sys.argv[2]
@@ -33,5 +34,5 @@ for file in files:
 			idx = name_split[-1]
 			print(idx)
 			padding_cnt = idx_len - len(idx)
-			im = Image.open(path)
-			im.save(join(destination_dir, file, name + '_' + (padding_cnt * '0') + idx + '.png'))	#in server path is splited by /
+			img = cv2.imread(path, cv2.IMREAD_GRAYSCALE)
+			cv2.imwrite(join(destination_dir, file, name + '_' + (padding_cnt * '0') + idx + '.png'), img)
