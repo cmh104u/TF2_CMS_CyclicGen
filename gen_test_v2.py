@@ -14,7 +14,7 @@ files = os.listdir(testing_dir)
 index_len = 3
 file_extension_len = 4
 
-#date = time.strftime("%y%m%d", time.localtime())
+output_path = os.getcwd()
 output_dir = testing_dir + '_Output_' + str(level) + '_cp_' + cp_name
 os.mkdir(output_dir)
 
@@ -59,14 +59,14 @@ for l in range(1, level + 1):
 						if first_level:
 							shutil.copyfile(path, join(output_dir, file, file_name))
 						if cnt != final_input_frame:
-							f1.write(join(output_dir, file, file_name) + '\n')
+							f1.write(join(output_path, output_dir, file, file_name) + '\n')
 						if cnt != 1:
-							f2.write(join(output_dir, file, file_name) + '\n')
+							f2.write(join(output_path, output_dir, file, file_name) + '\n')
 					else:
 					# output frames
 						idx = str(cnt - 1)
 						padding = index_len - len(idx)
-						f3.write(join(output_dir, file, file_name[:-index_len-file_extension_len] + '0'*padding + idx + '.png') + '\n')
+						f3.write(join(output_path, output_dir, file, file_name[:-index_len-file_extension_len] + '0'*padding + idx + '.png') + '\n')
 			# end frame loop
 	# end class loop
 	f1.close()
